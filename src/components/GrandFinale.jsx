@@ -3,10 +3,10 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Heart, Sparkles, Mail, Eye, Award } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function GrandFinale() {
+export default function GrandFinale({ stopQuizMusic }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
-  const [typedMessage, setTypedMessage] = useState('');
+  const [typedLength, setTypedLength] = useState(0);
   const messageText = 
     "Sayangku,\n\n" +
     "Selamat hari jadi pernikahan kita yang ke-2! Gak terasa ya waktu berjalan begitu cepat. " +
@@ -17,10 +17,38 @@ export default function GrandFinale() {
     "Dengan segenap cintaku,\n" +
     "Suamimu 💖";
 
+  const typedMessage = messageText.slice(0, typedLength);
   const galleryRef = useRef(null);
+  const intervalRef = useRef(null);
+  const audioRef = useRef(null);
+
+  // Cleanup interval and audio on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
 
   const handleOpenEnvelope = () => {
     if (!isOpen) {
+      if (stopQuizMusic) {
+        stopQuizMusic();
+      }
+      // Play background music
+      try {
+        const audio = new Audio('/maher.mp3');
+        audio.loop = true;
+        audio.volume = 0.5; // 50% volume
+        audio.play().catch(err => console.log("Audio play blocked/failed:", err));
+        audioRef.current = audio;
+      } catch (err) {
+        console.error("Failed to play audio:", err);
+      }
       setIsOpen(true);
       // Trigger confetti
       confetti({
@@ -47,15 +75,16 @@ export default function GrandFinale() {
       }, 400);
 
       // Typing animation start
-      let index = 0;
-      const interval = setInterval(() => {
-        setTypedMessage((prev) => prev + messageText.charAt(index));
-        index++;
-        if (index >= messageText.length) {
-          clearInterval(interval);
-          // Show gallery after message typing completes
-          setTimeout(() => setShowGallery(true), 1000);
-        }
+      intervalRef.current = setInterval(() => {
+        setTypedLength((prev) => {
+          if (prev >= messageText.length) {
+            clearInterval(intervalRef.current);
+            // Show gallery after message typing completes
+            setTimeout(() => setShowGallery(true), 1000);
+            return prev;
+          }
+          return prev + 1;
+        });
       }, 40); // speed of typing
     }
   };
@@ -208,7 +237,7 @@ function GalleryItem({ img, index }) {
       transition={{ duration: 0.7, ease: "easeOut" }}
       className="glass-panel p-4 rounded-3xl shadow-lg border border-rose-gold-light/20 flex flex-col overflow-hidden"
     >
-      <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-rose-100 shadow-inner group">
+      <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-rose-100 shadow-inner group">
         <img
           src={img.src}
           alt={img.caption}

@@ -1,7 +1,7 @@
 export const questions = [
   {
     id: 1,
-    pertanyaan: "Ingat gak, apa nama tempat atau kafe tempat kita pertama kali jalan berdua (first date)?",
+    pertanyaan: "Ingat gak, apa nama tempat makan kita pertama kali jalan berdua (first date)?",
     jawabanBenar: "Nihonraku",
     clueSalah: "Masa lupa sih? Tempatnya yang ada di gang itu lho...",
     pesanSkip: "Baru kuis pertama udah mogok? Titik titik Udon tempura, Sayang... Skip aja deh biar cepet! ☕😜"
@@ -15,38 +15,38 @@ export const questions = [
   },
   {
     id: 3,
-    pertanyaan: "Apa panggilan sayang atau sebutan unik pertama dari aku buat kamu pas kita masih pacaran?",
-    jawabanBenar: "sayang",
-    clueSalah: "Hampir tepat, panggilan yang sedikit manja itu lho...",
-    pesanSkip: "Panggilan sayang pertama kita aja lupa? Cubit nih! Skip aja deh daripada ngambek... 😘🤫"
+    pertanyaan: "Judul Film Bioskop yang kita tonton bareng untuk pertama kali ?",
+    jawabanBenar: "elementa",
+    clueSalah: "Hampir tepat, film animasi itu lho...",
+    pesanSkip: "Film yang ada element element nya gt lho, Skip aja deh daripada ngambek... 😘🤫"
   },
   {
     id: 4,
+    pertanyaan: "Dimana tempat aku melamarmu?",
+    jawabanBenar: "al akbar",
+    clueSalah: "Ayo diingat-ingat lagi, di pelataran itu lho.",
+    pesanSkip: "Ingat-ingat lag pelataran masjid apa, Istriku...? Skip yuk! 🗓️❤️"
+  },
+  {
+    id: 5,
     pertanyaan: "Bulan apa kita berdua melangsungkan acara lamaran resmi?",
-    jawabanBenar: "januari",
+    jawabanBenar: "maret",
     clueSalah: "Ayo diingat-ingat lagi, beberapa bulan sebelum hari akad kita.",
     pesanSkip: "Ingat-ingat lagi bulannya, Istriku... Masa bulan bersejarah kita kabur dari ingatan? Skip yuk! 🗓️❤️"
   },
   {
-    id: 5,
+    id: 6,
     pertanyaan: "Apa warna dominan dari baju atau kebaya yang kamu pakai saat akad nikah kita?",
     jawabanBenar: "putih",
     clueSalah: "Warna yang bikin kamu kelihatan paling anggun hari itu!",
     pesanSkip: "Baju tercantik yang bikin aku terpana hari itu masa kamu lupa warnanya? Skip dulu deh biar gak pusing! 👰✨"
   },
   {
-    id: 6,
+    id: 7,
     pertanyaan: "Ke kota atau daerah mana kita pertama kali pergi liburan/bulan madu setelah sah jadi suami istri?",
     jawabanBenar: "Dieng",
     clueSalah: "Tempat yang suasananya dingin banget waktu itu.",
     pesanSkip: "Masa tempat kita pacaran halal pertama kali lupa? Kurang liburan nih kayaknya! Skip aja ya! 🏖️✈️"
-  },
-  {
-    id: 7,
-    pertanyaan: "Apa menu makanan pertama yang kamu masak buat aku setelah kita tinggal satu rumah?",
-    jawabanBenar: "nasi goreng",
-    clueSalah: "Masakan simpel tapi rasanya paling juara sedunia.",
-    pesanSkip: "Masakan terenak sedunia buatanmu yang bikin aku nambah terus masa lupa? Skip deh, besok masak itu lagi ya! 🍳😋"
   },
   {
     id: 8,

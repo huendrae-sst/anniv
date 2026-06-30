@@ -6,6 +6,7 @@ import GrandFinale from './components/GrandFinale';
 function App() {
   const [screen, setScreen] = useState('welcome');
   const [backgroundHearts, setBackgroundHearts] = useState([]);
+  const [quizAudio, setQuizAudio] = useState(null);
 
   // Generate background floating hearts
   useEffect(() => {
@@ -36,6 +37,33 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleStartNostalgia = () => {
+    try {
+      const audio = new Audio('/shania.mp3');
+      audio.loop = true;
+      audio.volume = 0.4; // 40% volume
+      audio.play().catch((err) => console.log("Quiz audio play blocked:", err));
+      setQuizAudio(audio);
+    } catch (err) {
+      console.error("Audio error:", err);
+    }
+    setScreen('quiz');
+  };
+
+  const stopQuizMusic = () => {
+    if (quizAudio) {
+      quizAudio.pause();
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (quizAudio) {
+        quizAudio.pause();
+      }
+    };
+  }, [quizAudio]);
+
   return (
     <div className="min-h-screen bg-zinc-900 flex justify-center items-center">
       {/* Mobile Frame Container */}
@@ -62,13 +90,13 @@ function App() {
 
         {/* Active Screen State Manager */}
         {screen === 'welcome' && (
-          <WelcomeScreen onStart={() => setScreen('quiz')} />
+          <WelcomeScreen onStart={handleStartNostalgia} />
         )}
         {screen === 'quiz' && (
           <QuizScreen onComplete={() => setScreen('finale')} />
         )}
         {screen === 'finale' && (
-          <GrandFinale />
+          <GrandFinale stopQuizMusic={stopQuizMusic} />
         )}
       </div>
     </div>
