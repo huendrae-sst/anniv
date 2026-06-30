@@ -25,7 +25,7 @@ export const questions = [
     pertanyaan: "Dimana tempat aku melamarmu?",
     jawabanBenar: "al akbar",
     clueSalah: "Ayo diingat-ingat lagi, di pelataran itu lho.",
-    pesanSkip: "Ingat-ingat lag pelataran masjid apa, Istriku...? Skip yuk! 🗓️❤️"
+    pesanSkip: "Ingat-ingat lag pelataran masjid apa, Istriku...? Skip yuk! 🗓️"
   },
   {
     id: 5,
